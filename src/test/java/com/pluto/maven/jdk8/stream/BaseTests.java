@@ -23,13 +23,17 @@ import com.pluto.maven.jdk8.pojo.UserData;
 public class BaseTests {
     
     protected List<UserData> dataList100000 = new ArrayList<>();
+    
+    protected List<UserData> dataList100 = new ArrayList<>();
+    
+    protected List<UserData> dataList10 = new ArrayList<>();
 
     @Before
     public void initDate() {
-        for(int i=0;i<100;i++) {
+        for(int i=0;i<100000;i++) {
             UserData itemData = new UserData();
             itemData.setName(RandomStringUtils.random(3,"abc"));
-            itemData.setStatus(RandomUtils.nextInt(1, 6)*10);
+            itemData.setStatus(RandomUtils.nextInt(1, 3)*10);
             itemData.setDate(LocalDateTime.of(
                 RandomUtils.nextInt(2016, 2019), 
                 RandomUtils.nextInt(1, 12), 
@@ -39,6 +43,12 @@ public class BaseTests {
             itemData.setAmount1(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
             itemData.setAmount2(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
             dataList100000.add(itemData);
+            if(i<100) {
+                dataList100.add(itemData);
+            }
+            if(i<10) {
+                dataList10.add(itemData);
+            }
         }
     }
     
