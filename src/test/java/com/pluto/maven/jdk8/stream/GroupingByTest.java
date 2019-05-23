@@ -1,6 +1,7 @@
 package com.pluto.maven.jdk8.stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import com.pluto.maven.jdk8.pojo.UserData;
+
+import lombok.val;
 
 
 /**
@@ -108,6 +111,23 @@ public class GroupingByTest extends BaseTests {
             ()->map3
         ));
         System.out.println(map4);
+    }
+    
+    
+    @Test
+    public void testGroupBy3() {
+        //统计每个状态的Size和最小Size
+        Map<Integer, List<Long>> map1 = dataList100.stream()
+            .sorted(Comparator.comparing(UserData::getStatus))
+            .collect(Collectors.groupingBy(
+                UserData::getStatus,
+                Collectors.collectingAndThen(
+                    Collectors.summarizingLong(UserData::getSize),
+                    dss->Arrays.asList(dss.getMax(),dss.getMin())
+                        
+                    )
+            ));
+        System.out.println(map1);
     }
 
 }
