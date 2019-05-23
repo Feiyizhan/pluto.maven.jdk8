@@ -45,6 +45,7 @@ public class BaseTests {
                 RandomUtils.nextInt(1,60)));
             itemData.setAmount1(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
             itemData.setAmount2(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
+            itemData.setSize(RandomUtils.nextLong(1, 10000));
             dataList100000.add(itemData);
             if(i<100) {
                 dataList100.add(itemData);

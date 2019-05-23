@@ -25,4 +25,7 @@ public class UserData {
     private BigDecimal amount1;
     
     private BigDecimal amount2;
+    
+    private Long size;
+    
 }
