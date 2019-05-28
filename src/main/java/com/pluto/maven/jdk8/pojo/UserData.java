@@ -28,4 +28,6 @@ public class UserData {
     
     private Long size;
     
+    private Integer age;
+    
 }
