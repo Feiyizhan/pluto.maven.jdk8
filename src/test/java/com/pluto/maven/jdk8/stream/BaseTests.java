@@ -22,8 +22,13 @@ import com.pluto.maven.jdk8.pojo.UserData;
  * @author 徐明龙 XuMingLong 2019-05-22
  */
 public class BaseTests {
+    protected List<UserData> dataList10000000 = new ArrayList<>();
+    
+    protected List<UserData> dataList1000000 = new ArrayList<>();
     
     protected List<UserData> dataList100000 = new ArrayList<>();
+    
+    protected List<UserData> dataList1000 = new ArrayList<>();
     
     protected List<UserData> dataList100 = new ArrayList<>();
     
@@ -33,7 +38,7 @@ public class BaseTests {
 
     @Before
     public void initDate() {
-        for(int i=0;i<100000;i++) {
+        for(int i=0;i<10000000;i++) {
             UserData itemData = new UserData();
             itemData.setName(RandomStringUtils.random(3,"abc"));
             itemData.setStatus(RandomUtils.nextInt(1, 4)*10);
@@ -46,13 +51,24 @@ public class BaseTests {
             itemData.setAmount1(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
             itemData.setAmount2(BigDecimal.valueOf(RandomUtils.nextLong(1, 10000)).divide(new BigDecimal("100"), 2,RoundingMode.HALF_UP));
             itemData.setSize(RandomUtils.nextLong(1, 10000));
-            dataList100000.add(itemData);
+            itemData.setAge(RandomUtils.nextInt(18, 50));
+            dataList10000000.add(itemData);
+            if(i<1000000) {
+                dataList1000000.add(itemData);
+            }
+            if(i<100000) {
+                dataList100000.add(itemData);
+            }
+            if(i<1000) {
+                dataList1000.add(itemData);
+            }
             if(i<100) {
                 dataList100.add(itemData);
             }
             if(i<10) {
                 dataList10.add(itemData);
             }
+            
         }
     }
     
